@@ -25,8 +25,9 @@ namespace BlackScreen
         public MainWindow()
         {
             InitializeComponent();
+            this.Blackscreen.MouseDoubleClick += new System.Windows.Input.MouseButtonEventHandler(this.mouseDoubleClick);
             Mouse.OverrideCursor = Cursors.None;
-            MainWindow1.WindowState = WindowState.Maximized;
+            Blackscreen.WindowState = WindowState.Maximized;
         }
 
         private void HandleKeyUp(object sender, KeyEventArgs e)
@@ -34,21 +35,21 @@ namespace BlackScreen
             if(e.Key.Equals(Key.F))
             {
 
-                MainWindow1.WindowState = WindowState.Minimized;
+                Blackscreen.WindowState = WindowState.Minimized;
 
                 //if (fullscreen)
                 //{
-                //    MainWindow1.WindowState = WindowState.Normal;
+                //    Blackscreen.WindowState = WindowState.Normal;
                 //}
                 //else
                 //{
-                //    MainWindow1.WindowState = WindowState.Maximized;
+                //    Blackscreen.WindowState = WindowState.Maximized;
                 //}
                 //fullscreen = !fullscreen;
             }
             else if (e.Key.Equals(Key.C))
             {
-                MainWindow1.Close();
+                Blackscreen.Close();
             }
 
         }
@@ -59,6 +60,14 @@ namespace BlackScreen
             {
                 this.DragMove();
             }
+        }
+
+        private void mouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(Blackscreen.WindowState == WindowState.Maximized)
+                Blackscreen.WindowState = WindowState.Minimized;
+            else if (Blackscreen.WindowState == WindowState.Normal)
+                Blackscreen.WindowState = WindowState.Maximized;
         }
     }
 }
